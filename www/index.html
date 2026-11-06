@@ -121,43 +121,62 @@ document.querySelectorAll(".card").forEach(card => {
 
     const lessons = {
       historia: [
-        ["O começo da cultura hacker", "A cultura hacker surgiu com entusiastas da computação que exploravam e compartilhavam conhecimentos."],
-        ["Evolução da tecnologia", "Conheça a evolução dos computadores, da internet e da segurança digital."],
-        ["Curiosidade", "O termo hacker também representa criatividade, curiosidade e capacidade de resolver problemas."]
+        ["O começo da cultura hacker", "A cultura hacker surgiu entre entusiastas que exploravam computadores, compartilhavam conhecimento e criavam soluções."],
+        ["Primeiros computadores", "Os primeiros computadores ocupavam salas inteiras. Com o tempo, ficaram menores, mais rápidos e acessíveis."],
+        ["Nascimento da internet", "A internet evoluiu de redes de pesquisa para uma rede mundial de comunicação."],
+        ["O que é um hacker?", "É alguém com conhecimento técnico que explora sistemas e entende como a tecnologia funciona. O contexto e a autorização importam."],
+        ["Software livre", "Projetos de código aberto permitem estudar, modificar e compartilhar programas conforme suas licenças."],
+        ["Evolução da segurança", "A segurança digital evoluiu para proteger dados, dispositivos, redes e identidades."]
       ],
       seguranca: [
-        ["Senhas fortes", "Use senhas longas, únicas e difíceis de adivinhar."],
-        ["Autenticação em duas etapas", "Ative a verificação em duas etapas para adicionar uma camada extra de proteção."],
-        ["Proteção contra golpes", "Desconfie de links desconhecidos, mensagens urgentes e pedidos de senhas."],
-        ["Atualizações", "Mantenha aplicativos e sistema operacional atualizados."]
+        ["Senhas fortes", "Crie senhas longas e exclusivas para cada serviço. Um gerenciador de senhas ajuda a armazená-las."],
+        ["Autenticação em duas etapas", "Ative um segundo fator de verificação. Aplicativos autenticadores ou chaves de segurança são boas opções."],
+        ["Proteção contra golpes", "Desconfie de links desconhecidos, mensagens urgentes e pedidos de códigos ou senhas."],
+        ["Atualizações", "Mantenha Android, aplicativos e programas atualizados para corrigir falhas conhecidas."],
+        ["Wi-Fi público", "Evite acessar informações sensíveis em redes desconhecidas. Confira o nome da rede e use HTTPS."],
+        ["Privacidade", "Revise as permissões dos aplicativos e compartilhe apenas os dados necessários."],
+        ["Backup", "Mantenha cópias importantes dos arquivos em local seguro e teste se consegue recuperá-las."]
       ],
       termux: [
-        ["Atualizar pacotes", "Atualiza a lista e os pacotes instalados.", "pkg update && pkg upgrade"],
-        ["Pasta atual", "Mostra em qual diretório você está.", "pwd"],
-        ["Listar arquivos", "Mostra arquivos e pastas.", "ls"],
-        ["Entrar em uma pasta", "Acesse uma pasta pelo nome.", "cd nome-da-pasta"],
+        ["Atualizar pacotes", "Atualiza a lista de pacotes e os programas instalados.", "pkg update && pkg upgrade"],
+        ["Pasta atual", "Mostra o diretório em que você está.", "pwd"],
+        ["Listar arquivos", "Exibe arquivos e pastas do diretório atual.", "ls -la"],
         ["Criar uma pasta", "Cria uma pasta chamada projetos.", "mkdir projetos"],
-        ["Instalar Python", "Instala a linguagem Python.", "pkg install python"]
+        ["Entrar em uma pasta", "Acessa uma pasta pelo nome.", "cd projetos"],
+        ["Voltar uma pasta", "Retorna ao diretório anterior.", "cd .."],
+        ["Instalar Python", "Instala Python no Termux.", "pkg install python"],
+        ["Ver versão do Python", "Mostra a versão instalada.", "python --version"],
+        ["Criar arquivo", "Cria um arquivo de texto vazio.", "touch notas.txt"],
+        ["Ler arquivo", "Mostra o conteúdo de um arquivo de texto.", "cat notas.txt"],
+        ["Ajuda de comandos", "Consulte a documentação de um comando.", "help"]
       ],
       redes: [
-        ["Endereço IP", "É um endereço que identifica um dispositivo em uma rede."],
-        ["DNS", "Traduz nomes de domínio, como exemplo.com, em endereços IP."],
-        ["Roteador", "Distribui a conexão entre os dispositivos da rede."],
-        ["Portas", "São pontos de comunicação usados por serviços de rede."],
-        ["Exemplo no Termux", "Consulte informações da conexão do seu próprio dispositivo.", "ip addr"]
+        ["Endereço IP", "Identifica uma interface de rede em uma conexão."],
+        ["DNS", "Traduz nomes de domínio em endereços IP."],
+        ["Roteador", "Conecta dispositivos e encaminha dados entre redes."],
+        ["Portas", "Identificam serviços e canais de comunicação em um dispositivo."],
+        ["Protocolo HTTP e HTTPS", "HTTP transfere páginas web. HTTPS protege a comunicação usando criptografia."],
+        ["Endereço local", "Consulte os endereços das interfaces do seu próprio dispositivo.", "ip addr"],
+        ["Conectividade", "Verifique se um domínio responde na rede.", "ping -c 4 example.com"],
+        ["Cuidados na rede", "Analise somente redes e dispositivos próprios ou para os quais você tenha autorização."]
       ],
       cripto: [
-        ["O que é criptografia?", "É uma técnica que transforma informações para protegê-las contra acesso não autorizado."],
-        ["Chave pública e privada", "São usadas em sistemas de criptografia assimétrica."],
-        ["Hash", "É uma representação calculada dos dados, muito usada para verificar integridade."],
-        ["HTTPS", "Ajuda a proteger a comunicação entre o navegador e um site."]
+        ["O que é criptografia?", "Transforma informações em dados protegidos que só podem ser lidos com os meios adequados."],
+        ["Chave pública e privada", "Na criptografia assimétrica, a chave pública pode ser compartilhada e a privada deve ser protegida."],
+        ["Hash", "Gera uma representação dos dados. É útil para verificar integridade, mas não é uma forma de descriptografar arquivos."],
+        ["HTTPS", "Usa TLS para proteger a comunicação entre o navegador e o site."],
+        ["Criptografia de arquivos", "Ajuda a proteger documentos armazenados contra acesso não autorizado."],
+        ["Assinatura digital", "Ajuda a verificar a autenticidade e a integridade de uma mensagem ou arquivo."],
+        ["Exemplo de hash", "Calcule o SHA-256 de um arquivo local.", "sha256sum notas.txt"]
       ],
       etica: [
-        ["O que é hacking ético?", "É avaliar a segurança de sistemas com autorização do proprietário."],
-        ["Autorização", "Nunca teste contas, redes ou sistemas de outras pessoas sem permissão."],
-        ["Laboratórios de estudo", "Use ambientes próprios e plataformas criadas para treinamento."],
-        ["Relatórios", "Registre os problemas encontrados e explique como corrigi-los."],
-        ["Responsabilidade", "O objetivo é identificar falhas e ajudar a proteger sistemas."]
+        ["O que é hacking ético?", "É avaliar a segurança de sistemas com autorização explícita do proprietário."],
+        ["Autorização", "Defina por escrito quais sistemas podem ser testados e quais atividades são permitidas."],
+        ["Laboratórios de estudo", "Use ambientes próprios e plataformas criadas para treinamento de segurança."],
+        ["Reconhecimento", "Aprenda a identificar informações públicas do seu próprio ambiente de laboratório."],
+        ["Relatórios", "Registre o problema, o impacto, as evidências e uma recomendação de correção."],
+        ["Responsabilidade", "Não acesse contas, redes ou dados de terceiros sem permissão."],
+        ["Aprendizado contínuo", "Estude redes, sistemas operacionais, programação e boas práticas de segurança."]
       ]
     };
 
