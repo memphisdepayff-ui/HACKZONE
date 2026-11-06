@@ -20,6 +20,21 @@ h2{color:#ff2525;font-size:19px}
 #content{margin-top:0;padding:18px;background:#151515;border-left:3px solid red;border-radius:5px;min-height:100px}
 button{background:#9c0000;color:white;border:0;padding:10px;border-radius:5px}
 footer{text-align:center;color:#666;padding:25px;font-size:12px}
+
+body.category-open header,body.category-open footer{display:none}
+body.category-open main{padding:0;min-height:100vh}
+body.category-open #content{
+  display:flex;flex-direction:column;gap:16px;
+  min-height:100vh;margin:0;padding:28px 20px;
+  border:0;border-radius:0;background:#080808;
+}
+#content h2{font-size:27px;color:#b52cff;text-align:center}
+#content p{font-size:17px;line-height:1.6;color:#eee}
+#content h3{color:#b52cff;font-size:20px}
+#content ul{padding-left:25px;line-height:2;color:#eee}
+#content .tip{border:1px solid #a020f0;border-radius:12px;padding:15px;color:#d58aff}
+#content button{margin-top:auto;width:100%;padding:16px;background:#8b12ed;font-size:17px}
+
 </style>
 </head>
 <body>
@@ -43,14 +58,15 @@ footer{text-align:center;color:#666;padding:25px;font-size:12px}
 </div>
 </main>
 <footer>HACKZONE v1.0 • BY VYRO DEV<br>USE SEUS CONHECIMENTOS COM RESPONSABILIDADE</footer>
+
 <script>
 const data = {
-  historia: ["HISTÓRIA HACKER", "Conheça a evolução dos hackers, da cultura dos computadores até a segurança digital moderna."],
-  seguranca: ["SEGURANÇA DIGITAL", "Use senhas fortes, autenticação em dois fatores e mantenha seus dispositivos atualizados."],
-  termux: ["TERMUX", "Terminal Linux para Android. Comece aprendendo pwd, ls, cd e mkdir."],
-  redes: ["REDES", "Aprenda sobre endereços IP, DNS, roteadores e protocolos de comunicação."],
-  cripto: ["CRIPTOGRAFIA", "Aprenda como dados são protegidos por técnicas de criptografia."],
-  etica: ["HACKING ÉTICO", "Teste somente sistemas próprios ou aqueles para os quais você possui autorização."]
+  historia: ["HISTÓRIA HACKER", "Conheça a evolução dos hackers e da segurança digital."],
+  seguranca: ["SEGURANÇA DIGITAL", "Aprenda a proteger suas contas, senhas e dispositivos."],
+  termux: ["TERMUX", "Terminal poderoso no Android."],
+  redes: ["REDES", "Conheça IP, DNS, roteadores e como funciona a internet."],
+  cripto: ["CRIPTOGRAFIA", "Aprenda como os dados são protegidos por criptografia."],
+  etica: ["HACKING ÉTICO", "Aprenda segurança digital testando somente sistemas com autorização."]
 };
 
 const content = document.getElementById("content");
@@ -65,31 +81,58 @@ document.querySelectorAll(".card").forEach(card => {
     homeTitle.hidden = true;
     categoryGrid.hidden = true;
     content.hidden = false;
+    document.body.classList.add("category-open");
     content.replaceChildren();
 
     const title = document.createElement("h2");
     title.textContent = item[0];
+    content.append(title);
 
     const paragraph = document.createElement("p");
     paragraph.textContent = item[1];
+    content.append(paragraph);
+
+    if (card.dataset.category === "termux") {
+      const heading = document.createElement("h3");
+      heading.textContent = "Principais recursos:";
+      content.append(heading);
+
+      const list = document.createElement("ul");
+      [
+        "Acesso ao terminal Linux",
+        "Instalação de pacotes com apt",
+        "Suporte a Python e Node.js",
+        "Ferramentas para desenvolvimento"
+      ].forEach(text => {
+        const li = document.createElement("li");
+        li.textContent = text;
+        list.append(li);
+      });
+      content.append(list);
+
+      const tip = document.createElement("div");
+      tip.className = "tip";
+      tip.textContent = "Dica: use apt update para atualizar a lista de pacotes.";
+      content.append(tip);
+    }
 
     const back = document.createElement("button");
-    back.type = "button";
-    back.textContent = "VOLTAR";
+    back.textContent = "← VOLTAR";
     back.addEventListener("click", showHome);
-
-    content.append(title, paragraph, back);
+    content.append(back);
     window.scrollTo(0, 0);
   });
 });
 
 function showHome() {
   content.hidden = true;
+  document.body.classList.remove("category-open");
   homeTitle.hidden = false;
   categoryGrid.hidden = false;
   content.replaceChildren();
   window.scrollTo(0, 0);
 }
 </script>
+
 </body>
 </html>
