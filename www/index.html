@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HACKZONE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#070707;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:30px 15px;background:linear-gradient(#240000,#080808)}
+h1{color:#ff1717;font-size:38px;letter-spacing:5px;text-shadow:0 0 18px red}
+header p{color:#aaa}
+main{padding:18px}
+h2{color:#ff2525;font-size:19px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#151515;border:1px solid #650000;border-radius:10px;padding:20px 10px;text-align:center;cursor:pointer}
+.card:active{background:#420000}
+.card b{display:block;color:#ff3030;margin-bottom:8px}
+#content{margin-top:20px;padding:18px;background:#151515;border-left:3px solid red;border-radius:5px;min-height:100px}
+button{background:#9c0000;color:white;border:0;padding:10px;border-radius:5px}
+footer{text-align:center;color:#666;padding:25px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>☠ HACKZONE</h1>
+<p>APRENDA • EXPLORE • PROTEJA-SE</p>
+</header>
+<main>
+<h2> TERMINAL DE CONHECIMENTO</h2>
+<div class="grid">
+<div class="card" onclick="show('historia')">💀<b>HISTÓRIA HACKER</b>Conhecimentos</div>
+<div class="card" onclick="show('seguranca')">🛡️<b>SEGURANÇA</b>Proteção digital</div>
+<div class="card" onclick="show('termux')">⌨️<b>TERMUX</b>Comandos básicos</div>
+<div class="card" onclick="show('redes')">🌐<b>REDES</b>IP e internet</div>
+<div class="card" onclick="show('cripto')">🔐<b>CRIPTOGRAFIA</b>Proteção de dados</div>
+<div class="card" onclick="show('etica')">⚠️<b>HACKING ÉTICO</b>Laboratório seguro</div>
+</div>
+<div id="content">
+<h2>ACESSO AUTORIZADO</h2>
+<p>Selecione uma categoria para explorar o conhecimento.</p>
+</div>
+</main>
+<footer>HACKZONE v1.0 • BY VYRO DEV<br>USE SEUS CONHECIMENTOS COM RESPONSABILIDADE</footer>
+<script>
+const data={
+historia:["HISTÓRIA HACKER","Conheça a evolução dos hackers, da cultura dos computadores até a segurança digital moderna."],
+seguranca:["SEGURANÇA DIGITAL","Use senhas fortes, autenticação em dois fatores e mantenha seus dispositivos atualizados."],
+termux:["TERMUX","Terminal Linux para Android. Comece aprendendo pwd, ls, cd e mkdir."],
+redes:["REDES","Aprenda sobre endereços IP, DNS, roteadores e protocolos de comunicação."],
+cripto:["CRIPTOGRAFIA","Aprenda como dados são protegidos por técnicas de criptografia."],
+etica:["HACKING ÉTICO","Teste somente sistemas próprios ou aqueles para os quais você possui autorização."]
+};
+function show(id){
+let d=data[id];
+document.getElementById("content").innerHTML="<h2>"+d[0]+"</h2><p>"+d[1]+"</p><button onclick=\"document.getElementById('content').innerHTML='<h2>HACKZONE</h2><p>Escolha outra categoria.</p>'\">VOLTAR</button>";
+}
+</script>
+</body>
+</html>

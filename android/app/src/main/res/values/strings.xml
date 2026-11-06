@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HACKZONE</string>
+    <string name="title_activity_main">HACKZONE</string>
+    <string name="package_name">com.vyro.hackzone</string>
+    <string name="custom_url_scheme">com.vyro.hackzone</string>
+</resources>
