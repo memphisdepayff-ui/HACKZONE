@@ -4,7 +4,48 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+name: HACKZONE APK
 
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Sincronizar Android
+        run: npx cap sync android
+
+      - name: Gerar APK
+        run: |
+          chmod +x android/gradlew
+          cd android
+          ./gradlew assembleDebug
+
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: HACKZONE-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
 jobs:
   build:
     runs-on: ubuntu-latest
