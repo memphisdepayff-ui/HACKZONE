@@ -35,7 +35,31 @@ body.category-open #content{
 #content .tip{border:1px solid #a020f0;border-radius:12px;padding:15px;color:#d58aff}
 #content button{margin-top:auto;width:100%;padding:16px;background:#8b12ed;font-size:17px}
 
-</style>
+
+.command-card{
+  background:#15101c;border:1px solid #7020a0;
+  border-radius:12px;padding:14px;margin:5px 0;
+}
+.command-card h3{margin:0 0 10px;color:#c56aff}
+.command-card pre{
+  white-space:pre-wrap;overflow-wrap:anywhere;
+  background:#050505;border-radius:7px;padding:12px;
+  color:#d58aff;font-size:15px;
+}
+.command-card p{font-size:14px!important;color:#bbb!important}
+\n
+.command-card{
+  background:#15101c;border:1px solid #7020a0;
+  border-radius:12px;padding:14px;margin:5px 0;
+}
+.command-card h3{margin:0 0 10px;color:#c56aff}
+.command-card pre{
+  white-space:pre-wrap;overflow-wrap:anywhere;
+  background:#050505;border-radius:7px;padding:12px;
+  color:#d58aff;font-size:15px;
+}
+.command-card p{font-size:14px!important;color:#bbb!important}
+\n</style>
 </head>
 <body>
 <header>
@@ -92,30 +116,77 @@ document.querySelectorAll(".card").forEach(card => {
     paragraph.textContent = item[1];
     content.append(paragraph);
 
-    if (card.dataset.category === "termux") {
-      const heading = document.createElement("h3");
-      heading.textContent = "Principais recursos:";
-      content.append(heading);
 
-      const list = document.createElement("ul");
-      [
-        "Acesso ao terminal Linux",
-        "Instalação de pacotes com apt",
-        "Suporte a Python e Node.js",
-        "Ferramentas para desenvolvimento"
-      ].forEach(text => {
-        const li = document.createElement("li");
-        li.textContent = text;
-        list.append(li);
-      });
-      content.append(list);
 
-      const tip = document.createElement("div");
-      tip.className = "tip";
-      tip.textContent = "Dica: use apt update para atualizar a lista de pacotes.";
-      content.append(tip);
-    }
 
+    const lessons = {
+      historia: [
+        ["O começo da cultura hacker", "A cultura hacker surgiu com entusiastas da computação que exploravam e compartilhavam conhecimentos."],
+        ["Evolução da tecnologia", "Conheça a evolução dos computadores, da internet e da segurança digital."],
+        ["Curiosidade", "O termo hacker também representa criatividade, curiosidade e capacidade de resolver problemas."]
+      ],
+      seguranca: [
+        ["Senhas fortes", "Use senhas longas, únicas e difíceis de adivinhar."],
+        ["Autenticação em duas etapas", "Ative a verificação em duas etapas para adicionar uma camada extra de proteção."],
+        ["Proteção contra golpes", "Desconfie de links desconhecidos, mensagens urgentes e pedidos de senhas."],
+        ["Atualizações", "Mantenha aplicativos e sistema operacional atualizados."]
+      ],
+      termux: [
+        ["Atualizar pacotes", "Atualiza a lista e os pacotes instalados.", "pkg update && pkg upgrade"],
+        ["Pasta atual", "Mostra em qual diretório você está.", "pwd"],
+        ["Listar arquivos", "Mostra arquivos e pastas.", "ls"],
+        ["Entrar em uma pasta", "Acesse uma pasta pelo nome.", "cd nome-da-pasta"],
+        ["Criar uma pasta", "Cria uma pasta chamada projetos.", "mkdir projetos"],
+        ["Instalar Python", "Instala a linguagem Python.", "pkg install python"]
+      ],
+      redes: [
+        ["Endereço IP", "É um endereço que identifica um dispositivo em uma rede."],
+        ["DNS", "Traduz nomes de domínio, como exemplo.com, em endereços IP."],
+        ["Roteador", "Distribui a conexão entre os dispositivos da rede."],
+        ["Portas", "São pontos de comunicação usados por serviços de rede."],
+        ["Exemplo no Termux", "Consulte informações da conexão do seu próprio dispositivo.", "ip addr"]
+      ],
+      cripto: [
+        ["O que é criptografia?", "É uma técnica que transforma informações para protegê-las contra acesso não autorizado."],
+        ["Chave pública e privada", "São usadas em sistemas de criptografia assimétrica."],
+        ["Hash", "É uma representação calculada dos dados, muito usada para verificar integridade."],
+        ["HTTPS", "Ajuda a proteger a comunicação entre o navegador e um site."]
+      ],
+      etica: [
+        ["O que é hacking ético?", "É avaliar a segurança de sistemas com autorização do proprietário."],
+        ["Autorização", "Nunca teste contas, redes ou sistemas de outras pessoas sem permissão."],
+        ["Laboratórios de estudo", "Use ambientes próprios e plataformas criadas para treinamento."],
+        ["Relatórios", "Registre os problemas encontrados e explique como corrigi-los."],
+        ["Responsabilidade", "O objetivo é identificar falhas e ajudar a proteger sistemas."]
+      ]
+    };
+
+    const heading = document.createElement("h3");
+    heading.textContent = "ÁREA DE APRENDIZADO";
+    content.append(heading);
+
+    lessons[card.dataset.category].forEach((lesson, index) => {
+      const box = document.createElement("div");
+      box.className = "command-card";
+
+      const title = document.createElement("h3");
+      title.textContent = (index + 1) + ". " + lesson[0];
+
+      const description = document.createElement("p");
+      description.textContent = lesson[1];
+
+      box.append(title, description);
+
+      if (lesson[2]) {
+        const code = document.createElement("pre");
+        const codeText = document.createElement("code");
+        codeText.textContent = lesson[2];
+        code.append(codeText);
+        box.append(code);
+      }
+
+      content.append(box);
+    });
     const back = document.createElement("button");
     back.textContent = "← VOLTAR";
     back.addEventListener("click", showHome);
