@@ -16,7 +16,7 @@ h2{color:#ff2525;font-size:19px}
 .card{background:#151515;border:1px solid #650000;border-radius:10px;padding:20px 10px;text-align:center;cursor:pointer}
 .card:active{background:#420000}
 .card b{display:block;color:#ff3030;margin-bottom:8px}
-#content{margin-top:20px;padding:18px;background:#151515;border-left:3px solid red;border-radius:5px;min-height:100px}
+#content{margin-top:0;padding:18px;background:#151515;border-left:3px solid red;border-radius:5px;min-height:100px}
 button{background:#9c0000;color:white;border:0;padding:10px;border-radius:5px}
 footer{text-align:center;color:#666;padding:25px;font-size:12px}
 </style>
@@ -27,8 +27,8 @@ footer{text-align:center;color:#666;padding:25px;font-size:12px}
 <p>APRENDA • EXPLORE • PROTEJA-SE</p>
 </header>
 <main>
-<h2> TERMINAL DE CONHECIMENTO</h2>
-<div class="grid">
+<h2 id="home-title"> TERMINAL DE CONHECIMENTO</h2>
+<div class="grid" id="category-grid">
 <div class="card" data-category="historia">💀<b>HISTÓRIA HACKER</b>Conhecimentos</div>
 <div class="card" data-category="seguranca">🛡️<b>SEGURANÇA</b>Proteção digital</div>
 <div class="card" data-category="termux">⌨️<b>TERMUX</b>Comandos básicos</div>
@@ -36,7 +36,7 @@ footer{text-align:center;color:#666;padding:25px;font-size:12px}
 <div class="card" data-category="cripto">🔐<b>CRIPTOGRAFIA</b>Proteção de dados</div>
 <div class="card" data-category="etica">⚠️<b>HACKING ÉTICO</b>Laboratório seguro</div>
 </div>
-<div id="content">
+<div id="content" hidden>
 <h2>ACESSO AUTORIZADO</h2>
 <p>Selecione uma categoria para explorar o conhecimento.</p>
 </div>
@@ -53,12 +53,17 @@ const data = {
 };
 
 const content = document.getElementById("content");
+const homeTitle = document.getElementById("home-title");
+const categoryGrid = document.getElementById("category-grid");
 
 document.querySelectorAll(".card").forEach(card => {
   card.addEventListener("click", () => {
     const item = data[card.dataset.category];
     if (!item) return;
 
+    homeTitle.hidden = true;
+    categoryGrid.hidden = true;
+    content.hidden = false;
     content.replaceChildren();
 
     const title = document.createElement("h2");
@@ -73,19 +78,16 @@ document.querySelectorAll(".card").forEach(card => {
     back.addEventListener("click", showHome);
 
     content.append(title, paragraph, back);
+    window.scrollTo(0, 0);
   });
 });
 
 function showHome() {
+  content.hidden = true;
+  homeTitle.hidden = false;
+  categoryGrid.hidden = false;
   content.replaceChildren();
-
-  const title = document.createElement("h2");
-  title.textContent = "HACKZONE";
-
-  const paragraph = document.createElement("p");
-  paragraph.textContent = "Escolha outra categoria.";
-
-  content.append(title, paragraph);
+  window.scrollTo(0, 0);
 }
 </script>
 </body>
