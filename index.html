@@ -7,59 +7,49 @@
 <style>
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:#070707;color:white;font-family:Arial,sans-serif}
-header{text-align:center;padding:30px 15px;background:linear-gradient(#240000,#080808)}
-h1{color:#ff1717;font-size:38px;letter-spacing:5px;text-shadow:0 0 18px red}
-header p{color:#aaa}
-main{padding:18px}
-h2{color:#ff2525;font-size:19px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#151515;border:1px solid #650000;border-radius:10px;padding:20px 10px;text-align:center;cursor:pointer}
-.card:active{background:#420000}
-.card b{display:block;color:#ff3030;margin-bottom:8px}
-#content{margin-top:0;padding:18px;background:#151515;border-left:3px solid red;border-radius:5px;min-height:100px}
-button{background:#9c0000;color:white;border:0;padding:10px;border-radius:5px}
-footer{text-align:center;color:#666;padding:25px;font-size:12px}
-
+:root{color-scheme:dark;--green:#39ff88;--red:#ff3048;--border:rgba(57,255,136,.3)}
+body{margin:0;min-height:100vh;color:#e4f8eb;font-family:Arial,sans-serif;background:radial-gradient(ellipse at 50% 0%,#103322,transparent 48%),linear-gradient(135deg,#020604,#050b08 55%,#020403)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(57,255,136,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,136,.12) 1px,transparent 1px);background-size:35px 35px}
+header,main,footer{position:relative;z-index:1}
+header{text-align:center;padding:38px 15px 30px;background:linear-gradient(180deg,#071b11,#050a07);border-bottom:1px solid var(--border);box-shadow:0 8px 35px #00ff0010}
+h1{margin:0;color:var(--green);font-size:38px;letter-spacing:5px;text-shadow:0 0 8px #19ff78,0 0 25px #19ff7888}
+header p{color:#8aa998;letter-spacing:3px;font-size:12px}
+main{max-width:850px;margin:auto;padding:24px 18px}
+h2{color:var(--green);font-size:19px;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.card{min-height:112px;padding:21px 12px;text-align:center;cursor:pointer;color:#a9c9b5;background:linear-gradient(145deg,#101d15,#080e0a);border:1px solid var(--border);border-radius:10px;transition:.2s}
+.card:active{transform:scale(.97);border-color:var(--green);box-shadow:0 0 18px #39ff8833}
+.card b{display:block;color:var(--green);margin:9px 0 5px;letter-spacing:1px}
+button{color:#041009;background:var(--green);border:1px solid var(--green);border-radius:6px;padding:12px;font-weight:bold;letter-spacing:1px}
+footer{text-align:center;color:#567363;padding:25px;font-size:11px}
 body.category-open header,body.category-open footer{display:none}
-body.category-open main{padding:0;min-height:100vh}
-body.category-open #content{
-  display:flex;flex-direction:column;gap:16px;
-  min-height:100vh;margin:0;padding:28px 20px;
-  border:0;border-radius:0;background:#080808;
-}
-#content h2{font-size:27px;color:#b52cff;text-align:center}
-#content p{font-size:17px;line-height:1.6;color:#eee}
-#content h3{color:#b52cff;font-size:20px}
+body.category-open main{max-width:none;padding:0;min-height:100vh}
+body.category-open #content{display:flex;flex-direction:column;gap:16px;min-height:100vh;margin:0;padding:28px 20px;border:0;border-radius:0;background:radial-gradient(ellipse at 50% 0%,#103322,transparent 55%),#050a07}
+#content{margin-top:18px;padding:20px;background:#0a140ef2;border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px}
+#content h2{font-size:27px;color:var(--green);text-align:center}
+#content p{font-size:16px;line-height:1.6;color:#d0e4d7}
+#content h3{color:var(--green);font-size:19px}
 #content ul{padding-left:25px;line-height:2;color:#eee}
-#content .tip{border:1px solid #a020f0;border-radius:12px;padding:15px;color:#d58aff}
-#content button{margin-top:auto;width:100%;padding:16px;background:#8b12ed;font-size:17px}
+#content .tip{border:1px solid #0b8f49;border-radius:10px;padding:15px;color:var(--green)}
+.command-card{background:linear-gradient(145deg,#101b14,#080e0a);border:1px solid var(--border);border-radius:10px;padding:15px;margin:5px 0;box-shadow:0 0 15px #0004}
+.command-card h3{margin:0 0 10px;color:var(--green)}
+.command-card pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#020503;border:1px solid #1c3928;border-radius:7px;padding:12px;color:var(--green);font-size:14px}
+.command-card p{font-size:14px!important;color:#a9c3b2!important}
+.quiz-area{margin-top:25px;padding:16px;background:linear-gradient(145deg,#101b14,#070d09);border:1px solid #0b8f49;border-radius:12px;box-shadow:0 0 22px #39ff8810}
+.quiz-area h3,.quiz-progress{color:var(--green)!important}
+.quiz-progress{font-weight:bold}
+#content .quiz-option{display:block;width:100%;margin:8px 0!important;padding:14px;text-align:left;color:#e4f8eb;background:#102017;border:1px solid #28583a}
+#content .quiz-option:disabled{opacity:1}
+#content .quiz-option.correct{color:white;background:#145c2b;border-color:#35c76b}
+#content .quiz-option.incorrect{color:white;background:#721919;border-color:var(--red)}
+.quiz-feedback{font-weight:bold}
+.quiz-feedback.correct-text{color:#54e887!important}
+.quiz-feedback.incorrect-text{color:#ff6969!important}
+#content .quiz-next{width:100%;margin-top:12px;padding:14px;color:#041009;background:var(--green);border-color:var(--green)}
+#content>button:last-child{margin-top:auto;width:100%;padding:15px;color:white;background:#7d1720;border:1px solid var(--red)}
+@media(max-width:360px){h1{font-size:30px}main{padding:18px 12px}.card{padding:17px 8px}}
 
-
-.command-card{
-  background:#15101c;border:1px solid #7020a0;
-  border-radius:12px;padding:14px;margin:5px 0;
-}
-.command-card h3{margin:0 0 10px;color:#c56aff}
-.command-card pre{
-  white-space:pre-wrap;overflow-wrap:anywhere;
-  background:#050505;border-radius:7px;padding:12px;
-  color:#d58aff;font-size:15px;
-}
-.command-card p{font-size:14px!important;color:#bbb!important}
-\n
-.command-card{
-  background:#15101c;border:1px solid #7020a0;
-  border-radius:12px;padding:14px;margin:5px 0;
-}
-.command-card h3{margin:0 0 10px;color:#c56aff}
-.command-card pre{
-  white-space:pre-wrap;overflow-wrap:anywhere;
-  background:#050505;border-radius:7px;padding:12px;
-  color:#d58aff;font-size:15px;
-}
-.command-card p{font-size:14px!important;color:#bbb!important}
-\n</style>
+</style>
 </head>
 <body>
 <header>
@@ -180,7 +170,41 @@ document.querySelectorAll(".card").forEach(card => {
       ]
     };
 
-    const heading = document.createElement("h3");
+
+const challenges = {
+  historia: [
+    ["Qual era uma característica da cultura hacker?", ["Compartilhar conhecimento", "Proibir estudos", "Evitar computadores"], 0, "A cultura hacker valoriza exploração, criatividade e compartilhamento."],
+    ["O que é software de código aberto?", ["Um programa sem segurança", "Um programa cujo código pode ser estudado conforme a licença", "Um programa que só funciona offline"], 1, "O código aberto permite estudar e modificar o programa conforme sua licença."],
+    ["O que define um teste de segurança ético?", ["Acessar qualquer sistema", "Esconder as atividades", "Ter autorização do responsável"], 2, "A autorização é essencial para um teste de segurança ético."]
+  ],
+  seguranca: [
+    ["Como deve ser uma senha segura?", ["Longa e exclusiva", "Igual em todos os sites", "Seu nome e aniversário"], 0, "Use senhas longas e diferentes para cada serviço."],
+    ["Para que serve a autenticação em duas etapas?", ["Aumentar a velocidade da internet", "Adicionar uma camada de proteção", "Apagar arquivos"], 1, "O segundo fator dificulta o acesso indevido à conta."],
+    ["O que fazer ao receber um link suspeito?", ["Abrir imediatamente", "Enviar sua senha", "Não clicar e verificar a mensagem"], 2, "Links suspeitos podem levar a golpes e páginas falsas."]
+  ],
+  termux: [
+    ["Qual comando mostra a pasta atual?", ["pwd", "mkdir", "clear"], 0, "O comando pwd mostra o caminho do diretório atual."],
+    ["Qual comando lista arquivos?", ["cd", "ls", "touch"], 1, "O comando ls lista arquivos e diretórios."],
+    ["Qual comando cria uma pasta?", ["cat", "pwd", "mkdir"], 2, "mkdir cria um novo diretório."]
+  ],
+  redes: [
+    ["Qual é a função do DNS?", ["Traduzir nomes de domínio em endereços IP", "Carregar a bateria", "Criar senhas"], 0, "O DNS ajuda a localizar servidores usando nomes de domínio."],
+    ["O que é um endereço IP?", ["Um tipo de aplicativo", "Um identificador de rede", "Uma senha de Wi-Fi"], 1, "O IP identifica uma interface em uma rede."],
+    ["Para que serve o comando ping?", ["Criar pastas", "Criptografar arquivos", "Testar a conectividade"], 2, "O ping ajuda a verificar se um destino responde pela rede."]
+  ],
+  cripto: [
+    ["Para que serve um hash?", ["Verificar a integridade dos dados", "Recuperar qualquer senha", "Aumentar o armazenamento"], 0, "Um hash permite comparar dados e verificar se foram alterados."],
+    ["Qual chave deve ser mantida em segredo na criptografia assimétrica?", ["A chave pública", "A chave privada", "Nenhuma das duas"], 1, "A chave privada deve ser protegida pelo seu proprietário."],
+    ["O que o HTTPS ajuda a proteger?", ["O brilho da tela", "O espaço do celular", "A comunicação entre navegador e site"], 2, "HTTPS utiliza TLS para proteger a comunicação."]
+  ],
+  etica: [
+    ["O que é indispensável antes de testar um sistema?", ["Autorização explícita", "Apenas curiosidade", "Esconder sua identidade"], 0, "Testes devem ocorrer somente com autorização do responsável."],
+    ["Onde é adequado praticar hacking ético?", ["Em contas de desconhecidos", "Em laboratórios próprios e autorizados", "Em redes públicas sem permissão"], 1, "Laboratórios de treinamento oferecem um ambiente controlado."],
+    ["O que deve conter um relatório de segurança?", ["Somente opiniões", "Senhas de outras pessoas", "Problema, impacto e recomendação"], 2, "Um relatório útil descreve o problema e como corrigi-lo."]
+  ]
+};
+
+const heading = document.createElement("h3");
     heading.textContent = "ÁREA DE APRENDIZADO";
     content.append(heading);
 
@@ -206,7 +230,100 @@ document.querySelectorAll(".card").forEach(card => {
 
       content.append(box);
     });
-    const back = document.createElement("button");
+
+const quiz = challenges[card.dataset.category] || [];
+const quizArea = document.createElement("section");
+quizArea.className = "quiz-area";
+content.append(quizArea);
+
+let questionIndex = 0;
+let score = 0;
+
+function renderQuestion() {
+  quizArea.replaceChildren();
+
+  if (questionIndex >= quiz.length) {
+    const resultTitle = document.createElement("h3");
+    resultTitle.textContent = "DESAFIO CONCLUÍDO";
+    const resultText = document.createElement("p");
+    resultText.textContent = "Você acertou " + score + " de " + quiz.length + " perguntas.";
+    const restart = document.createElement("button");
+    restart.className = "quiz-next";
+    restart.textContent = "REFAZER DESAFIO";
+    restart.addEventListener("click", () => {
+      questionIndex = 0;
+      score = 0;
+      renderQuestion();
+    });
+    quizArea.append(resultTitle, resultText, restart);
+    return;
+  }
+
+  const current = quiz[questionIndex];
+  const progress = document.createElement("p");
+  progress.className = "quiz-progress";
+  progress.textContent = "PERGUNTA " + (questionIndex + 1) + " DE " + quiz.length;
+
+  const question = document.createElement("h3");
+  question.textContent = current[0];
+
+  const optionsBox = document.createElement("div");
+  optionsBox.className = "quiz-options";
+  const optionButtons = [];
+
+  current[1].forEach((option, index) => {
+    const optionButton = document.createElement("button");
+    optionButton.type = "button";
+    optionButton.className = "quiz-option";
+    optionButton.textContent = option;
+    optionButton.addEventListener("click", () => {
+      if (optionButtons[0].disabled) return;
+
+      optionButtons.forEach((button, i) => {
+        button.disabled = true;
+        if (i === current[2]) button.classList.add("correct");
+        if (i === index && index !== current[2]) button.classList.add("incorrect");
+      });
+
+      const feedback = document.createElement("p");
+      feedback.className = "quiz-feedback";
+
+      if (index === current[2]) {
+        score++;
+        feedback.textContent = "CORRETO! Você acertou.";
+        feedback.classList.add("correct-text");
+      } else {
+        feedback.textContent = "INCORRETO! Resposta certa: " + current[1][current[2]];
+        feedback.classList.add("incorrect-text");
+      }
+
+      const explanation = document.createElement("p");
+      explanation.textContent = current[3];
+
+      const next = document.createElement("button");
+      next.className = "quiz-next";
+      next.textContent = questionIndex === quiz.length - 1 ? "VER RESULTADO" : "PRÓXIMA PERGUNTA";
+      next.addEventListener("click", () => {
+        questionIndex++;
+        renderQuestion();
+      });
+
+      quizArea.append(feedback, explanation, next);
+    });
+
+    optionButtons.push(optionButton);
+    optionsBox.append(optionButton);
+  });
+
+  quizArea.append(progress, question, optionsBox);
+}
+
+const quizHeading = document.createElement("h3");
+quizHeading.textContent = "DESAFIO DE CONHECIMENTO";
+quizArea.append(quizHeading);
+renderQuestion();
+
+const back = document.createElement("button");
     back.textContent = "← VOLTAR";
     back.addEventListener("click", showHome);
     content.append(back);
